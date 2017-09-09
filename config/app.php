@@ -181,6 +181,8 @@ return [
         App\Providers\Test::class,
 
         App\Providers\ModuleRouteProvider::class,
+        //module package
+        App\Providers\ModulesProvider::class,
 
     ],
 

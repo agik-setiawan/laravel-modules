@@ -6,6 +6,4 @@ Route::get('/', function () {
 });
 });
 
-Route::get('/', function () {
-    return 'SISWA';
-});
+Route::get('view', 'SiswaController@index');

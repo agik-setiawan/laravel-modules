@@ -7,8 +7,6 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use App\Modules\Module;
 class ModuleRouteProvider extends ServiceProvider
 {
-
-protected $namespace = 'App\Http\Controllers';
     /**
      * Bootstrap the application services.
      *
@@ -16,6 +14,7 @@ protected $namespace = 'App\Http\Controllers';
      */
     public function boot()
     {
+
         parent::boot();
     }
 
@@ -51,7 +50,18 @@ Route::prefix($prefix)
         ->middleware('web')
         ->namespace($namespace)
         ->group($path);
+
+//config views
+$view_path=base_path('app/Modules/'.$setting_module['module'].'/'.'views');
+$this->loadViewsFrom($view_path, $prefix);
 }
+
+if ($this->app->runningInConsole()) {
+        $this->commands([
+
+        ]);
+    }
+
     }
 
 }
