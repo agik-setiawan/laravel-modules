@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-
+use App\Modules\Module;
 class ModuleRouteProvider extends ServiceProvider
 {
 
@@ -38,16 +38,14 @@ $this->mapWebRoutes();
      */
     protected function mapWebRoutes()
     {
-        $modules=[
-        ['module'=>'Siswa','namespace'=>'App\Modules\Siswa\Controllers'],
-        ['module'=>'Karyawan','namespace'=>'App\Modules\Karyawan\Controllers']
-        ];
+        //get module
+$modules=Module::set_module();
 
 //looping modules route
 foreach ($modules as $setting_module) {
 $prefix=strtolower($setting_module['module']);
 $namespace=$setting_module['namespace'];
-$path=base_path('Modules/'.$setting_module['module'].'/'.'route.php');
+$path=base_path('app/Modules/'.$setting_module['module'].'/'.'route.php');
 
 Route::prefix($prefix)
         ->middleware('web')
